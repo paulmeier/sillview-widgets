@@ -182,6 +182,7 @@ export function parseManifest(data: string): Manifest {
   }
 
   const author = requireString(raw, 'author');
+  if (author === '') fail('author is required and must not be empty');
   if (author.length > MAX_AUTHOR_LEN) {
     fail(`author must be at most ${MAX_AUTHOR_LEN} characters`);
   }
@@ -217,7 +218,9 @@ export function parseManifest(data: string): Manifest {
     fail(`unknown category "${category}" (known: ${CATEGORIES.join(', ')})`);
   }
 
-  let icon = typeof raw['icon'] === 'string' ? (raw['icon'] as string).trim() : '';
+  const iconRaw = raw['icon'];
+  if (iconRaw !== undefined && typeof iconRaw !== 'string') fail('icon must be a string');
+  let icon = typeof iconRaw === 'string' ? iconRaw.trim() : '';
   if (icon === '') icon = 'puzzle';
   if (!(KNOWN_ICONS as readonly string[]).includes(icon)) {
     fail(`unknown icon "${icon}" (known: ${KNOWN_ICONS.join(', ')})`);
@@ -230,7 +233,9 @@ export function parseManifest(data: string): Manifest {
     if (t.length > MAX_TAG_LEN) fail(`tag "${t}" is over the ${MAX_TAG_LEN}-character limit`);
   }
 
-  let tier = typeof raw['tier'] === 'string' ? (raw['tier'] as string).trim() : '';
+  const tierRaw = raw['tier'];
+  if (tierRaw !== undefined && typeof tierRaw !== 'string') fail('tier must be a string');
+  let tier = typeof tierRaw === 'string' ? tierRaw.trim() : '';
   if (tier === '') tier = 'verified';
   if (!(TIERS as readonly string[]).includes(tier)) {
     fail(`unknown tier "${tier}" (known: ${TIERS.join(', ')})`);

@@ -83,7 +83,10 @@
       }
     }
   },
-  "dependentRequired": {
-    "widget_type": []
-  }
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "builtin" } }, "required": ["kind"] },
+      "then": { "required": ["widget_type"] }
+    }
+  ]
 }

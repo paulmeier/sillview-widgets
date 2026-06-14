@@ -1,0 +1,11 @@
+# The generated registry index and manifests are compared byte-for-byte by
+# `sillview-widgets index --check`, which always emits LF. Pin text files to LF so a
+# Windows checkout (core.autocrlf) can't turn the committed bytes into CRLF and fail
+# the gate locally.
+* text=auto eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.ts text eol=lf
+*.png binary
+*.svg text eol=lf

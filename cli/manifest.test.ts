@@ -75,6 +75,10 @@ describe('parseManifest', () => {
     ['unknown icon', VALID.replace('"wallet"', '"banana"')],
     ['reserved kind', VALID.replace('"builtin"', '"bundle"')],
     ['oversized grid w', VALID.replace('w = 4', 'w = 13')],
+    ['empty author', VALID.replace('author      = "sillview"', 'author      = ""')],
+    ['whitespace author', VALID.replace('author      = "sillview"', 'author      = "   "')],
+    ['non-string icon', VALID.replace('icon        = "wallet"', 'icon        = 5')],
+    ['non-string tier', VALID + '\ntier = 7\n'],
   ];
   for (const [label, toml] of cases) {
     it(`rejects ${label}`, () => {
