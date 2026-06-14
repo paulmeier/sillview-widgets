@@ -1,0 +1,12 @@
+name        = "spend-by-label"
+version     = "1.0.0"
+description = "Outflow grouped by your most-used label (or payee)."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/spend-by-label"
+kind        = "builtin"
+widget_type = "spend-by-label"
+category    = "Spending"
+icon        = "pie-chart"
+tags        = ["spending", "labels", "chart"]
+default_size = { w = 4, h = 6, minW = 3, minH = 4 }

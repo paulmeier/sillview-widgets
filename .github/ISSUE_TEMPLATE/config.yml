@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: sillview app
+    url: https://github.com/paulmeier/sillview
+    about: Bugs or questions about the sillview dashboard itself belong here.
+  - name: Widget spec & submission guidelines
+    url: https://github.com/paulmeier/sillview-widgets/blob/main/docs/widget-spec.md
+    about: Read the manifest reference and the submission gate before proposing a widget.

@@ -1,0 +1,12 @@
+name        = "account-balances"
+version     = "1.0.0"
+description = "Bar chart comparing balances across accounts."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/account-balances"
+kind        = "builtin"
+widget_type = "account-balances"
+category    = "Accounts"
+icon        = "bar-chart"
+tags        = ["accounts", "balance", "chart"]
+default_size = { w = 4, h = 6, minW = 3, minH = 4 }

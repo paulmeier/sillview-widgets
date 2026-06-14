@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/paulmeier/sillview-widgets/main/schema/widget.schema.json",
+  "title": "sillview community widget manifest",
+  "description": "Schema for widget.toml. Editors that support TOML schemas (e.g. taplo) can validate against this; the authoritative validator is `sillview-widgets validate`.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["name", "version", "description", "author", "license", "homepage", "kind", "category", "default_size"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$",
+      "description": "Lowercase slug; must equal the widget's directory name."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-.]+)?(?:\\+[0-9A-Za-z-.]+)?$",
+      "description": "Semantic version MAJOR.MINOR.PATCH."
+    },
+    "description": { "type": "string", "minLength": 12, "maxLength": 200 },
+    "author": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "license": {
+      "type": "string",
+      "enum": ["0BSD", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "MIT", "MPL-2.0", "Unlicense"]
+    },
+    "homepage": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "kind": {
+      "type": "string",
+      "enum": ["builtin", "spec", "bundle"],
+      "description": "Widget payload model. Only \"builtin\" is listable today; \"spec\" and \"bundle\" are reserved."
+    },
+    "widget_type": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$",
+      "description": "For kind=builtin, the compiled-in sillview widget type this entry maps to."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Overview", "Accounts", "Spending", "Activity", "Market"]
+    },
+    "icon": {
+      "type": "string",
+      "enum": ["wallet", "bank", "bar-chart", "line-chart", "pie-chart", "list", "activity", "refresh", "scales", "exchange", "gauge", "coin", "star", "puzzle"],
+      "description": "Curated icon name (the sillview app owns the SVG); defaults to puzzle."
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 12,
+      "items": { "type": "string", "minLength": 1, "maxLength": 30 }
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["verified", "community"],
+      "description": "Trust tier. A builtin widget is verified (first-party code compiled into the app)."
+    },
+    "default_size": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["w", "h"],
+      "properties": {
+        "w": { "type": "integer", "minimum": 1, "maximum": 12 },
+        "h": { "type": "integer", "minimum": 1 },
+        "minW": { "type": "integer", "minimum": 1, "maximum": 12 },
+        "minH": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "config": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "types", "description"],
+        "properties": {
+          "key": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$" },
+          "types": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "enum": ["string", "number", "string[]"] }
+          },
+          "required": { "type": "boolean" },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "builtin" } }, "required": ["kind"] },
+      "then": { "required": ["widget_type"] }
+    }
+  ]
+}

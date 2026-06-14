@@ -1,0 +1,12 @@
+name        = "net-worth"
+version     = "1.0.0"
+description = "Total balance across all accounts, grouped by currency."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/net-worth"
+kind        = "builtin"
+widget_type = "net-worth"
+category    = "Overview"
+icon        = "wallet"
+tags        = ["balance", "currency", "overview"]
+default_size = { w = 4, h = 3, minW = 3, minH = 2 }

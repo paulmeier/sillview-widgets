@@ -1,0 +1,22 @@
+name        = "transactions"
+version     = "1.0.0"
+description = "The most recent transactions across all accounts."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/transactions"
+kind        = "builtin"
+widget_type = "transactions"
+category    = "Activity"
+icon        = "list"
+tags        = ["transactions", "activity", "ledger"]
+default_size = { w = 6, h = 7, minW = 4, minH = 4 }
+
+[[config]]
+key         = "limit"
+types       = ["number", "string"]
+description = "How many recent transactions to list (default 40)."
+
+[[config]]
+key         = "accountId"
+types       = ["string"]
+description = "Restrict to a single account id; omit for all accounts."

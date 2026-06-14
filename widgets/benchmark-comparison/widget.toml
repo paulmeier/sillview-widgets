@@ -1,0 +1,24 @@
+name        = "benchmark-comparison"
+version     = "1.0.0"
+description = "A market series as \"growth of $10k\" alongside an account balance, for context."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/benchmark-comparison"
+kind        = "builtin"
+widget_type = "benchmark-comparison"
+category    = "Market"
+icon        = "scales"
+tags        = ["market", "benchmark", "comparison", "chart"]
+default_size = { w = 8, h = 5, minW = 4, minH = 4 }
+
+[[config]]
+key         = "series"
+types       = ["string"]
+required    = true
+description = "A market series id (e.g. \"spy\")."
+
+[[config]]
+key         = "account"
+types       = ["string"]
+required    = true
+description = "An account id (e.g. \"acc_brokerage\")."
