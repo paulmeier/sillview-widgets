@@ -1,0 +1,12 @@
+name        = "activity-feed"
+version     = "1.0.0"
+description = "A live feed of change events streamed from kasas."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/activity-feed"
+kind        = "builtin"
+widget_type = "activity-feed"
+category    = "Activity"
+icon        = "activity"
+tags        = ["activity", "live", "events"]
+default_size = { w = 4, h = 6, minW = 3, minH = 3 }

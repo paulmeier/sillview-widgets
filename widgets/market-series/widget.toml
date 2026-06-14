@@ -1,0 +1,18 @@
+name        = "market-series"
+version     = "1.0.0"
+description = "Overlay one or more market series on one chart — two or more compare as growth of $10k."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/market-series"
+kind        = "builtin"
+widget_type = "market-series"
+category    = "Market"
+icon        = "line-chart"
+tags        = ["market", "series", "chart"]
+default_size = { w = 6, h = 5, minW = 4, minH = 3 }
+
+[[config]]
+key         = "series"
+types       = ["string", "string[]"]
+required    = true
+description = "One market series id, or an array of ids to overlay (e.g. [\"spy\",\"agg\"])."

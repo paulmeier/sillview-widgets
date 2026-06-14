@@ -1,0 +1,155 @@
+/**
+ * Builds the machine-readable index the sillview app consumes to list and install
+ * community widgets. The index is a single deterministic JSON document generated
+ * from the `widgets/` directory: for every widget that passes the gate it records
+ * the manifest metadata plus — critically for install integrity — a per-file
+ * SHA-256 and an aggregate `content_hash`. The hashes are the chain of custody
+ * between "reviewed in this repo" and "installed on a user's machine".
+ *
+ * TypeScript analog of kasas-plugins' `internal/registry/registry.go`. Byte-stable:
+ * widgets sorted by name, files sorted by path, 2-space indent, trailing newline —
+ * so CI's `index --check` can enforce that the committed file is current.
+ */
+
+import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
+import path from 'node:path';
+import { checkWidget, reportOK, type Report, type Limits, defaultLimits } from './gate.js';
+import { sha256Hex, aggregateHash } from './hash.js';
+import type { ConfigSpec, Manifest, WidgetSize } from './manifest.js';
+
+/** Bump on a breaking change to the index document format. */
+export const SCHEMA_VERSION = 1;
+
+export interface IndexFile {
+  path: string;
+  sha256: string;
+  size: number;
+}
+
+/** One listed widget: manifest fields + registry-computed integrity data. */
+export interface RegistryWidget {
+  name: string;
+  version: string;
+  description: string;
+  author: string;
+  license: string;
+  homepage: string;
+  kind: string;
+  widget_type: string;
+  category: string;
+  icon: string;
+  tags: string[];
+  tier: string;
+  default_size: WidgetSize;
+  config: ConfigSpec[];
+  path: string;
+  files: IndexFile[];
+  content_hash: string;
+  size_bytes: number;
+}
+
+export interface Index {
+  schema_version: number;
+  generated_at: string;
+  repository: string;
+  widgets: RegistryWidget[];
+}
+
+export interface BuildResult {
+  index: Index;
+  failures: Report[];
+}
+
+/**
+ * Gate every widget under `widgetsDir` and return an Index of those that pass plus
+ * the failing reports (fatal in CI). `repoRelWidgetsDir` is the repo-relative form
+ * used to compute each widget's `path`.
+ */
+export function buildIndex(
+  repoURL: string,
+  widgetsDir: string,
+  repoRelWidgetsDir: string,
+  limits: Limits = defaultLimits(),
+): BuildResult {
+  const index: Index = {
+    schema_version: SCHEMA_VERSION,
+    generated_at: '', // stamped by the caller (index command)
+    repository: repoURL,
+    widgets: [],
+  };
+  const failures: Report[] = [];
+
+  if (!existsSync(widgetsDir)) return { index, failures };
+
+  for (const entry of readdirSync(widgetsDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const dir = path.join(widgetsDir, entry.name);
+    const report = checkWidget(dir, limits);
+    if (!reportOK(report) || !report.manifest) {
+      failures.push(report);
+      continue;
+    }
+    index.widgets.push(
+      widgetEntry(report.manifest, dir, toSlash(path.join(repoRelWidgetsDir, entry.name))),
+    );
+  }
+
+  index.widgets.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+  return { index, failures };
+}
+
+function widgetEntry(m: Manifest, dir: string, repoRelPath: string): RegistryWidget {
+  const { files, total, contentHash } = hashTree(dir);
+  // Construct in a fixed key order so JSON.stringify output is byte-stable.
+  return {
+    name: m.name,
+    version: m.version,
+    description: m.description,
+    author: m.author,
+    license: m.license,
+    homepage: m.homepage,
+    kind: m.kind,
+    widget_type: m.widgetType,
+    category: m.category,
+    icon: m.icon,
+    tags: m.tags,
+    tier: m.tier,
+    default_size: m.defaultSize,
+    config: m.config,
+    path: repoRelPath,
+    files,
+    content_hash: contentHash,
+    size_bytes: total,
+  };
+}
+
+function hashTree(dir: string): { files: IndexFile[]; total: number; contentHash: string } {
+  const files: IndexFile[] = [];
+  let total = 0;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isFile()) continue; // the gate already rejected nested dirs/symlinks
+    const full = path.join(dir, entry.name);
+    const data = readFileSync(full);
+    files.push({ path: toSlash(entry.name), sha256: sha256Hex(data), size: statSync(full).size });
+    total += data.length;
+  }
+  files.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+  return { files, total, contentHash: aggregateHash(files) };
+}
+
+/** Render the index as stable, human-diffable JSON (2-space indent, trailing newline). */
+export function marshalIndex(index: Index): string {
+  return JSON.stringify(index, null, 2) + '\n';
+}
+
+/** Blank the generated_at line so `index --check` compares only substantive content. */
+export function stripGeneratedAt(text: string): string {
+  return text
+    .split('\n')
+    .filter((line) => !line.includes('"generated_at"'))
+    .join('\n');
+}
+
+function toSlash(p: string): string {
+  return p.split(path.sep).join('/');
+}

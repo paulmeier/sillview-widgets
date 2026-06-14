@@ -1,0 +1,7 @@
+# Every widget submission and every change to the tooling/registry is reviewed by the
+# maintainer before merge. Because v1 widgets carry no executable code, review focuses
+# on metadata accuracy and naming.
+*                 @paulmeier
+/widgets/         @paulmeier
+/registry/        @paulmeier
+/cli/             @paulmeier

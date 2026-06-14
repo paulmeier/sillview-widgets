@@ -1,0 +1,12 @@
+name        = "sync-status"
+version     = "1.0.0"
+description = "Backend connectivity and the most recent sync run."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/sync-status"
+kind        = "builtin"
+widget_type = "sync-status"
+category    = "Overview"
+icon        = "refresh"
+tags        = ["sync", "status", "health"]
+default_size = { w = 4, h = 3, minW = 3, minH = 2 }

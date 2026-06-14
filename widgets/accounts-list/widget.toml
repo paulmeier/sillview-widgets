@@ -1,0 +1,12 @@
+name        = "accounts-list"
+version     = "1.0.0"
+description = "Every account with its current balance."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/accounts-list"
+kind        = "builtin"
+widget_type = "accounts-list"
+category    = "Accounts"
+icon        = "bank"
+tags        = ["accounts", "balance"]
+default_size = { w = 4, h = 6, minW = 3, minH = 3 }

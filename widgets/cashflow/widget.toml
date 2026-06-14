@@ -1,0 +1,12 @@
+name        = "cashflow"
+version     = "1.0.0"
+description = "Money in vs. out per month over the last six months."
+author      = "sillview"
+license     = "MIT"
+homepage    = "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/cashflow"
+kind        = "builtin"
+widget_type = "cashflow"
+category    = "Spending"
+icon        = "exchange"
+tags        = ["cashflow", "income", "expenses", "chart"]
+default_size = { w = 8, h = 5, minW = 4, minH = 4 }

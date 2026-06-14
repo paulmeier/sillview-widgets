@@ -1,0 +1,48 @@
+name: Widget submission proposal
+description: Propose a new widget for the sillview community registry.
+title: "[widget] <name>"
+labels: ["widget-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to discuss a widget before opening a PR. Read
+        [docs/widget-spec.md](https://github.com/paulmeier/sillview-widgets/blob/main/docs/widget-spec.md)
+        and [docs/submission-guidelines.md](https://github.com/paulmeier/sillview-widgets/blob/main/docs/submission-guidelines.md)
+        first.
+  - type: input
+    id: name
+    attributes:
+      label: Widget name (slug)
+      placeholder: net-worth
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What does it show?
+      description: A sentence or two; this becomes the manifest description (12–200 chars).
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options: [Overview, Accounts, Spending, Activity, Market]
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      description: Only "builtin" is listable today (its code ships in the sillview app).
+      options: [builtin]
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I have read the widget spec and submission guidelines.
+          required: true

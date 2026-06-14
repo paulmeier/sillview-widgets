@@ -1,0 +1,50 @@
+name: Validate
+
+# The submission gate. Every PR (and every push to main) must pass:
+#   - the CLI's own typecheck / lint / unit tests,
+#   - the widget gate over every widget (manifest + structural checks),
+#   - a check that the committed registry index is current.
+# A widget that does not clear all of these is never listed.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tooling:
+    name: Tooling (typecheck, lint, test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+
+  gate:
+    name: Widget gate + index check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Gate all widgets
+        run: node dist/cli.mjs validate
+      - name: Verify registry index is current
+        run: node dist/cli.mjs index --check

@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-14T19:34:24.686Z",
+  "repository": "https://github.com/paulmeier/sillview-widgets",
+  "widgets": [
+    {
+      "name": "account-balances",
+      "version": "1.0.0",
+      "description": "Bar chart comparing balances across accounts.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/account-balances",
+      "kind": "builtin",
+      "widget_type": "account-balances",
+      "category": "Accounts",
+      "icon": "bar-chart",
+      "tags": [
+        "accounts",
+        "balance",
+        "chart"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 4,
+        "h": 6,
+        "minW": 3,
+        "minH": 4
+      },
+      "config": [],
+      "path": "widgets/account-balances",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "ca50e7d82b8babfd55c78c7b313b5fbdc07aa73c0cac8843b8498191850aabc8",
+          "size": 317
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "68742acd3cb7514c9c83f50ee36aee43c463cce481f4c958836d09d07bc68976",
+          "size": 466
+        }
+      ],
+      "content_hash": "sha256:9dd8b5e7ec00253d6c484e4c25e1a7f877ad92e9f400ce4e5bb978fd6bdd69d5",
+      "size_bytes": 783
+    },
+    {
+      "name": "accounts-list",
+      "version": "1.0.0",
+      "description": "Every account with its current balance.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/accounts-list",
+      "kind": "builtin",
+      "widget_type": "accounts-list",
+      "category": "Accounts",
+      "icon": "bank",
+      "tags": [
+        "accounts",
+        "balance"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 4,
+        "h": 6,
+        "minW": 3,
+        "minH": 3
+      },
+      "config": [],
+      "path": "widgets/accounts-list",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "b946ab3e9fdab6bc6d2dc6079bf5dc496e9cf97bce7b81ff594c52311ae54e51",
+          "size": 300
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "dc9aa2b92febf63a378ede9bbd4e6165e80caf142eb5a1bfd1f2de9f56ed7d38",
+          "size": 437
+        }
+      ],
+      "content_hash": "sha256:16499a8e6affad34ee1b180ad516119e13e8d74d6394102e0673d9a83d8f6cd9",
+      "size_bytes": 737
+    },
+    {
+      "name": "activity-feed",
+      "version": "1.0.0",
+      "description": "A live feed of change events streamed from kasas.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/activity-feed",
+      "kind": "builtin",
+      "widget_type": "activity-feed",
+      "category": "Activity",
+      "icon": "activity",
+      "tags": [
+        "activity",
+        "live",
+        "events"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 4,
+        "h": 6,
+        "minW": 3,
+        "minH": 3
+      },
+      "config": [],
+      "path": "widgets/activity-feed",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "8b027d7e73006aad8ea52c25027fcea8e62c54e776da350f07ae9e40ba85ef6f",
+          "size": 315
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "f60e3a832a6eef4b26a234a96f2e60d843bfa53bbcc6f4ace77f18e5caa21956",
+          "size": 458
+        }
+      ],
+      "content_hash": "sha256:4d30b913faefe7e12162c37190732f61e76b4fcbadd73756fed84aa7ba69878f",
+      "size_bytes": 773
+    },
+    {
+      "name": "benchmark-comparison",
+      "version": "1.0.0",
+      "description": "A market series as \"growth of $10k\" alongside an account balance, for context.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/benchmark-comparison",
+      "kind": "builtin",
+      "widget_type": "benchmark-comparison",
+      "category": "Market",
+      "icon": "scales",
+      "tags": [
+        "market",
+        "benchmark",
+        "comparison",
+        "chart"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 8,
+        "h": 5,
+        "minW": 4,
+        "minH": 4
+      },
+      "config": [
+        {
+          "key": "series",
+          "types": [
+            "string"
+          ],
+          "required": true,
+          "description": "A market series id (e.g. \"spy\")."
+        },
+        {
+          "key": "account",
+          "types": [
+            "string"
+          ],
+          "required": true,
+          "description": "An account id (e.g. \"acc_brokerage\")."
+        }
+      ],
+      "path": "widgets/benchmark-comparison",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "316a299645577ad1df86c8c0a5d98d0362bfb9433f1cad036c84b654c9456e92",
+          "size": 515
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "ecd85cd72fb5abf63919b6ddd7855f1bde989ae94e25f29a0ea4f0c4f3455629",
+          "size": 788
+        }
+      ],
+      "content_hash": "sha256:1e295c68871235faafc3782aefad4b17e3c44492cea3094576c86e9812dc93b0",
+      "size_bytes": 1303
+    },
+    {
+      "name": "cashflow",
+      "version": "1.0.0",
+      "description": "Money in vs. out per month over the last six months.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/cashflow",
+      "kind": "builtin",
+      "widget_type": "cashflow",
+      "category": "Spending",
+      "icon": "exchange",
+      "tags": [
+        "cashflow",
+        "income",
+        "expenses",
+        "chart"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 8,
+        "h": 5,
+        "minW": 4,
+        "minH": 4
+      },
+      "config": [],
+      "path": "widgets/cashflow",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "a431487fc4ccb0db0adc41e2bbfd319190cba392cc9158cc9278679aa9f12754",
+          "size": 309
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "b201d8f98de9e0c98faf0506f8d8185179cf7a551699437ef628433b962ec3de",
+          "size": 459
+        }
+      ],
+      "content_hash": "sha256:597eebe44e1aa39b1347f8457bfd9aa17fb03a138ae42db97c89397267666d42",
+      "size_bytes": 768
+    },
+    {
+      "name": "market-series",
+      "version": "1.0.0",
+      "description": "Overlay one or more market series on one chart — two or more compare as growth of $10k.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/market-series",
+      "kind": "builtin",
+      "widget_type": "market-series",
+      "category": "Market",
+      "icon": "line-chart",
+      "tags": [
+        "market",
+        "series",
+        "chart"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 6,
+        "h": 5,
+        "minW": 4,
+        "minH": 3
+      },
+      "config": [
+        {
+          "key": "series",
+          "types": [
+            "string",
+            "string[]"
+          ],
+          "required": true,
+          "description": "One market series id, or an array of ids to overlay (e.g. [\"spy\",\"agg\"])."
+        }
+      ],
+      "path": "widgets/market-series",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "560b5ae800ef0cb6219f8ff868266fc31ff5de1f5f8406af8a2a29a4c26b4c0b",
+          "size": 491
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "c5d41ccfbdfc09b1b6f1147b1bb38fdead7fa8eafb44dfe43200500c30711267",
+          "size": 682
+        }
+      ],
+      "content_hash": "sha256:7a7a42c821547073020a2e592602cff878c942719421d83635468c6d181c1000",
+      "size_bytes": 1173
+    },
+    {
+      "name": "net-worth",
+      "version": "1.0.0",
+      "description": "Total balance across all accounts, grouped by currency.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/net-worth",
+      "kind": "builtin",
+      "widget_type": "net-worth",
+      "category": "Overview",
+      "icon": "wallet",
+      "tags": [
+        "balance",
+        "currency",
+        "overview"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 4,
+        "h": 3,
+        "minW": 3,
+        "minH": 2
+      },
+      "config": [],
+      "path": "widgets/net-worth",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "8f16c6ae7ca8c59cc3647f1cc99b7e947570222e6871194f8d048b8b331ff175",
+          "size": 313
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "493d39e8d6062aff4648fc903a57cafa52004cbc1c8268873497aef70d0d8157",
+          "size": 455
+        }
+      ],
+      "content_hash": "sha256:4d8eee705ee33ade3cb66ada70c05f20292d5ebd4613e6fe19c7f2764b30250a",
+      "size_bytes": 768
+    },
+    {
+      "name": "spend-by-label",
+      "version": "1.0.0",
+      "description": "Outflow grouped by your most-used label (or payee).",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/spend-by-label",
+      "kind": "builtin",
+      "widget_type": "spend-by-label",
+      "category": "Spending",
+      "icon": "pie-chart",
+      "tags": [
+        "spending",
+        "labels",
+        "chart"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 4,
+        "h": 6,
+        "minW": 3,
+        "minH": 4
+      },
+      "config": [],
+      "path": "widgets/spend-by-label",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "c1e3819822f0426180f023862d89004af785aec6ed67a42bc6048aa095e541ed",
+          "size": 323
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "08a2c0523cb3424e903251d67b7944c1dfaaed842222d83ab0b4759864eedc85",
+          "size": 465
+        }
+      ],
+      "content_hash": "sha256:8ee13a8c24667481bc8dbf678b6ca1dcaa6a37f624e04a09b5b98d573b2fab46",
+      "size_bytes": 788
+    },
+    {
+      "name": "sync-status",
+      "version": "1.0.0",
+      "description": "Backend connectivity and the most recent sync run.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/sync-status",
+      "kind": "builtin",
+      "widget_type": "sync-status",
+      "category": "Overview",
+      "icon": "refresh",
+      "tags": [
+        "sync",
+        "status",
+        "health"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 4,
+        "h": 3,
+        "minW": 3,
+        "minH": 2
+      },
+      "config": [],
+      "path": "widgets/sync-status",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "f7ae35468aaf465ccedacdff5958eea3217619774e6d1122ec2dbc82a038bf83",
+          "size": 312
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "b320dc6d0468d348ae4bb80d1a524def630f43c1474269021ba10e37d05ea709",
+          "size": 450
+        }
+      ],
+      "content_hash": "sha256:4b809bdccb163a2ec80713d6bd89c259883a459bc09624c41417ca9334169c31",
+      "size_bytes": 762
+    },
+    {
+      "name": "transactions",
+      "version": "1.0.0",
+      "description": "The most recent transactions across all accounts.",
+      "author": "sillview",
+      "license": "MIT",
+      "homepage": "https://github.com/paulmeier/sillview-widgets/tree/main/widgets/transactions",
+      "kind": "builtin",
+      "widget_type": "transactions",
+      "category": "Activity",
+      "icon": "list",
+      "tags": [
+        "transactions",
+        "activity",
+        "ledger"
+      ],
+      "tier": "verified",
+      "default_size": {
+        "w": 6,
+        "h": 7,
+        "minW": 4,
+        "minH": 4
+      },
+      "config": [
+        {
+          "key": "limit",
+          "types": [
+            "number",
+            "string"
+          ],
+          "required": false,
+          "description": "How many recent transactions to list (default 40)."
+        },
+        {
+          "key": "accountId",
+          "types": [
+            "string"
+          ],
+          "required": false,
+          "description": "Restrict to a single account id; omit for all accounts."
+        }
+      ],
+      "path": "widgets/transactions",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "ab730f9733d19194cce86cbfed54d9c60cc61e182219b9d70afaa8b689a065ad",
+          "size": 492
+        },
+        {
+          "path": "widget.toml",
+          "sha256": "1a69bae367562289a4e462d2bb798997fee17d72181fb86e7982223a972b2865",
+          "size": 730
+        }
+      ],
+      "content_hash": "sha256:cd0075276a6dfb411ef5a80a05b0522770d4dc70806897d49c96a7c5245b4cbf",
+      "size_bytes": 1222
+    }
+  ]
+}
